@@ -1,5 +1,5 @@
 # PyTorch-JAANet
-This repository is the PyTorch implementation of [JAA-Net](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhiwen_Shao_Deep_Adaptive_Attention_ECCV_2018_paper.pdf), as well as its extended version. "*v1.py" is for the ECCV version, and "*v2.py" is for the extened versin. The original Caffe implementation can be found [here](https://github.com/ZhiwenShao/JAANet)
+This repository is the PyTorch implementation of [JAA-Net](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhiwen_Shao_Deep_Adaptive_Attention_ECCV_2018_paper.pdf), as well as its extended version. "*v1*.py" is for the ECCV version, and "*v2*.py" is for the extened versin. The original Caffe implementation can be found [here](https://github.com/ZhiwenShao/JAANet)
 
 # Getting Started
 ## Installation
@@ -11,7 +11,8 @@ cd PyTorch-JAANet
 ```
 
 ## Datasets
-[BP4D](http://www.cs.binghamton.edu/~lijun/Research/3DFE/3DFE_Analysis.html) and [DISFA](http://www.engr.du.edu/mmahoor/DISFA.htm). Put these datasets into the folder "dataset" following the paths shown in the list files of the folder "data/list"
+[BP4D](http://www.cs.binghamton.edu/~lijun/Research/3DFE/3DFE_Analysis.html) and [DISFA](http://www.engr.du.edu/mmahoor/DISFA.htm).
+Put these datasets into the folder "dataset" following the paths shown in the list files of the folder "data/list"
 
 ## Preprocessing
 - Conduct similarity transformation for face images:
@@ -35,21 +36,21 @@ cd PyTorch-JAANet
 ## Training
 - Train on BP4D with the first two folds for training and the third fold for testing:
 ```
-python train_JAAv1.py --run_name='JAAv1'  --gpu_id=0 --train_batch_size=16 --eval_batch_size=28 --train_path_prefix='data/list/BP4D_combine_1_2' --test_path_prefix='data/list/BP4D_part3' --au_num=12
+python train_JAAv1.py --run_name='JAAv1' --gpu_id=0 --train_batch_size=16 --eval_batch_size=28 --train_path_prefix='data/list/BP4D_combine_1_2' --test_path_prefix='data/list/BP4D_part3' --au_num=12
 ```
 - Train on DISFA with the first two folds for training and the third fold for testing, using the the well-trained BP4D model for initialization:
 ```
-python train_JAAv1_disfa.py --run_name='JAAv1_DISFA'  --gpu_id=0 --train_batch_size=16 --eval_batch_size=32 --train_path_prefix='data/list/DISFA_combine_1_2' --test_path_prefix='data/list/DISFA_part3' --au_num=8 --pretrain_path='JAAv1_combine_1_3' --pretrain_epoch=5 
+python train_JAAv1_disfa.py --run_name='JAAv1_DISFA' --gpu_id=0 --train_batch_size=16 --eval_batch_size=32 --train_path_prefix='data/list/DISFA_combine_1_2' --test_path_prefix='data/list/DISFA_part3' --au_num=8 --pretrain_path='JAAv1_combine_1_3' --pretrain_epoch=5 
 ```
 
 ## Testing
-- Test a model trained without using target-domain pseudo AU labels:
+- Test the models saved in different epochs:
 ```
-python test.py --mode='weak'
+python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --start_epoch=1 --n_epochs=12 --eval_batch_size=28 --test_path_prefix='data/list/BP4D_part3' --au_num=12
 ```
 - Visualize attention maps
 ```
-python visualize_attention_map.py
+python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --pred_AU=False --vis_attention=True --start_epoch=5 --n_epochs=5 --test_path_prefix='data/list/BP4D_part3' --au_num=12
 ```
 
 ## Citation
