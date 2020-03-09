@@ -11,7 +11,8 @@ cd PyTorch-JAANet
 ```
 
 ## Datasets
-[BP4D](http://www.cs.binghamton.edu/~lijun/Research/3DFE/3DFE_Analysis.html) and [DISFA](http://www.engr.du.edu/mmahoor/DISFA.htm).
+[BP4D](http://www.cs.binghamton.edu/~lijun/Research/3DFE/3DFE_Analysis.html) and [DISFA](http://www.engr.du.edu/mmahoor/DISFA.htm)
+
 Put these datasets into the folder "dataset" following the paths shown in the list files of the folder "data/list"
 
 ## Preprocessing
@@ -53,8 +54,14 @@ python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --start_epoch=1 --n_epochs=12
 python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --pred_AU=False --vis_attention=True --start_epoch=5 --n_epochs=5 --test_path_prefix='data/list/BP4D_part3' --au_num=12
 ```
 
+## Supplement
+- The PyTorch implementation for the ECCV version conducts two minor revisions to make the proposed method more general:
+  - The redundant cropping of attention maps is removed
+  - The assembling of local feature maps uses element-wise average instead of element-wise sum
+- The differences in the extended version are detailed here
+
 ## Citation
-If you use this code for your research, please cite our paper
+- If you use the code of the ECCV version for your research, please cite
 ```
 @inproceedings{shao2018deep,
   title={Deep Adaptive Attention for Joint Facial Action Unit Detection and Face Alignment},
@@ -65,3 +72,4 @@ If you use this code for your research, please cite our paper
   organization={Springer}
 }
 ```
+- If you use the code of the extended version for your research, please cite
