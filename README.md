@@ -1,5 +1,5 @@
 # PyTorch-JAANet
-This repository is the PyTorch implementation of [JAA-Net](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhiwen_Shao_Deep_Adaptive_Attention_ECCV_2018_paper.pdf), as well as its extended version. "*v1*.py" is for the ECCV version, and "*v2*.py" is for the extened versin. The original Caffe implementation can be found [here](https://github.com/ZhiwenShao/JAANet)
+This repository is the PyTorch implementation of [JAA-Net](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhiwen_Shao_Deep_Adaptive_Attention_ECCV_2018_paper.pdf), as well as its extended version. "*v1.py" is for the ECCV version, and "*v2.py" is for the extened versin. The original Caffe implementation can be found [here](https://github.com/ZhiwenShao/JAANet)
 
 # Getting Started
 ## Installation
