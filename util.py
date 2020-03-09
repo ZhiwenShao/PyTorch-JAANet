@@ -212,8 +212,8 @@ def AU_detection_evalv2(loader, region_learning, align_net, local_attention_refi
 def vis_attention(loader, region_learning, align_net, local_attention_refine, write_path_prefix, net_name, epoch, alpha = 0.5, use_gpu=True):
     for i, batch in enumerate(loader):
         input, land, biocular, au = batch
-        if i > 1:
-            break
+        # if i > 1:
+        #     break
         if use_gpu:
             input = input.cuda()
         region_feat = region_learning(input)
@@ -221,8 +221,9 @@ def vis_attention(loader, region_learning, align_net, local_attention_refine, wr
         if use_gpu:
             aus_map = aus_map.cuda()
         output_aus_map = local_attention_refine(aus_map.detach())
-        # spatial_attention = torch.sum(region_feat, 1, True)
-        spatial_attention = output_aus_map
+
+        # aus_map is predefined, and output_aus_map is refined
+        spatial_attention = output_aus_map #aus_map
         if i == 0:
             all_input = input.data.cpu().float()
             all_spatial_attention = spatial_attention.data.cpu().float()
