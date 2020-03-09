@@ -1,5 +1,5 @@
 # PyTorch-JAANet
-This repository is the PyTorch implementation of [JAA-Net](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhiwen_Shao_Deep_Adaptive_Attention_ECCV_2018_paper.pdf), as well as its extended version. The original Caffe implementation can be found [here](https://github.com/ZhiwenShao/JAANet)
+This repository is the PyTorch implementation of [JAA-Net](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhiwen_Shao_Deep_Adaptive_Attention_ECCV_2018_paper.pdf), as well as its extended version. "*v1.py" is for the ECCV version, and "*v2.py" is for the extened versin. The original Caffe implementation can be found [here](https://github.com/ZhiwenShao/JAANet)
 
 # Getting Started
 ## Installation
@@ -15,53 +15,37 @@ cd PyTorch-JAANet
 
 ## Preprocessing
 - Conduct similarity transformation for face images:
-  - Put the landmark annotation files into the folder "dataset"
-  - An example of processed image can be found in the folder "data/imgs/EmotioNet/optimization_set/N_0000000001/" 
+  - Put the landmark annotation files into the folder "dataset". An example file "BP4D_combine_1_2_land.txt" for two images is also provided
   ```
   cd dataset
   python face_transform.py
   ```
-- Compute the weight of the loss of each AU in the BP4D training set:
+- Compute the inter-ocular distance of each face image
+  ```
+  cd dataset
+  python write_biocular.py
+  ```
+- Compute the weight of the loss of each AU for the training set:
   - The AU annoatation files should be in the folder "data/list"
-```
-cd dataset
-python write_AU_weight.py
-```
-
-## Preprocessing
-- Prepare the training data
-  - Run "prep/face_transform.cpp" to conduct similarity transformation for face images
-  - Run "prep/combine2parts.m" to combine two partitions as a training set, respectively
-  - Run "prep/write_AU_weight.m" to compute the weight of each AU for the training set
-  - Run "tools/convert_imageset" of Caffe to convert the images to leveldb or lmdb
-  - Run "tools/convert_data" to convert the AU labels and weights to leveldb or lmdb: the weights are shared by all the training samples (only one line needed)
-  - Our method is evaluated by 3-fold cross validation. For example, ¡°BP4D_combine_1_2¡± denotes the combination of partition 1 and partition 2
-- Modify the train_val prototxt files:
-  - Modify the paths of data
-  - A recommended training strategy is that selecting a small set of training data for validation to choose a proper maximum iterations and then using all the training data to retrain the model
+  ```
+  cd dataset
+  python write_AU_weight.py
+  ```
 
 ## Training
-- AU detection
+- Train on BP4D with the first two folds for training and the third fold for testing:
 ```
-cd model
-sh train_net.sh
+python train_JAAv1.py --run_name='JAAv1'  --gpu_id=0 --train_batch_size=16 --eval_batch_size=28 --train_path_prefix='data/list/BP4D_combine_1_2' --test_path_prefix='data/list/BP4D_part3' --au_num=12
 ```
-- AU intensity estimation
+- Train on DISFA with the first two folds for training and the third fold for testing, using the the well-trained BP4D model for initialization:
 ```
-sh train_net_intensity.sh
+python train_JAAv1_disfa.py --run_name='JAAv1_DISFA'  --gpu_id=0 --train_batch_size=16 --eval_batch_size=32 --train_path_prefix='data/list/DISFA_combine_1_2' --test_path_prefix='data/list/DISFA_part3' --au_num=8 --pretrain_path='JAAv1_combine_1_3' --pretrain_epoch=5 
 ```
-- Trained models on BP4D with 3-fold cross-validation for AU detection and on FERA 2015 for AU intensity estimation can be downloaded [here](https://sjtueducn-my.sharepoint.com/:f:/g/personal/shaozhiwen_sjtu_edu_cn/EsN4dd-08I9FtHnHw4bymsEB87xW7NETeW1BlIA6OS2pFw?e=Fu2HAf)
 
 ## Testing
-- AU detection
+- Test a model trained without using target-domain pseudo AU labels:
 ```
-python test.py
-```
-- AU intensity estimation
-```
-python test_intensity.py
-matlab -nodisplay
->> evaluate_intensity
+python test.py --mode='weak'
 ```
 - Visualize attention maps
 ```
@@ -71,11 +55,12 @@ python visualize_attention_map.py
 ## Citation
 If you use this code for your research, please cite our paper
 ```
-@article{shao2019facial,
-  title={Facial action unit detection using attention and relation learning},
-  author={Shao, Zhiwen and Liu, Zhilei and Cai, Jianfei and Wu, Yunsheng and Ma, Lizhuang},
-  journal={IEEE Transactions on Affective Computing},
-  year={2019},
-  publisher={IEEE}
+@inproceedings{shao2018deep,
+  title={Deep Adaptive Attention for Joint Facial Action Unit Detection and Face Alignment},
+  author={Shao, Zhiwen and Liu, Zhilei and Cai, Jianfei and Ma, Lizhuang},
+  booktitle={European Conference on Computer Vision},
+  year={2018},
+  pages={725--740},
+  organization={Springer}
 }
 ```
