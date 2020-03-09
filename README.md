@@ -61,7 +61,7 @@ python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --pred_AU=False --vis_attenti
 - The differences in the extended version are detailed here
 
 ## Citation
-- If you use the code of the ECCV version for your research, please cite
+- If you use this code for your research, please cite our paper
 ```
 @inproceedings{shao2018deep,
   title={Deep Adaptive Attention for Joint Facial Action Unit Detection and Face Alignment},
@@ -72,4 +72,3 @@ python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --pred_AU=False --vis_attenti
   organization={Springer}
 }
 ```
-- If you use the code of the extended version for your research, please cite
