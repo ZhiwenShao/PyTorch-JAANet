@@ -174,7 +174,7 @@ def main(config):
                        config.write_path_prefix + config.run_name + '/au_net_' + str(epoch) + '.pth')
 
         # eval in the train
-        if epoch >= config.start_epoch:
+        if epoch > config.start_epoch:
             print('testing ...')
             region_learning.train(False)
             align_net.train(False)
