@@ -61,7 +61,7 @@ python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --pred_AU=False --vis_attenti
 - The differences in the extended version are detailed [here](https://arxiv.org/pdf/2003.08834.pdf)
 
 ## Citation
-- If you use this code for your research, please cite our paper
+- If you use this code for your research, please cite our papers
 ```
 @inproceedings{shao2018deep,
   title={Deep Adaptive Attention for Joint Facial Action Unit Detection and Face Alignment},
