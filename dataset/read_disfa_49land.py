@@ -14,9 +14,3 @@ all_imgs_land[:, 0:all_imgs_land.shape[1]:2]=all_imgs_full_land[:,2 * reflect_66
 all_imgs_land[:, 1:all_imgs_land.shape[1]:2]=all_imgs_full_land[:,2 * reflect_66 - 1]
 
 np.savetxt('DISFA_combine_1_2_land.txt', all_imgs_land, fmt='%.5f', delimiter=' ')
-
-
-
-
-
-
