@@ -13,16 +13,21 @@ cd PyTorch-JAANet
 ## Datasets
 [BP4D](http://www.cs.binghamton.edu/~lijun/Research/3DFE/3DFE_Analysis.html) and [DISFA](http://www.engr.du.edu/mmahoor/DISFA.htm)
 
-Put these datasets into the folder "dataset" following the paths shown in the list files of the folder "data/list"
+Put these datasets into the folder "dataset" following the paths shown in the list files of the folder "data/list". You can refer to the example images for BP4D and DISFA
 
 ## Preprocessing
+- Put the landmark annotation files into the folder "dataset". Two example files "BP4D_combine_1_2_land.txt" and "DISFA_combine_1_2_66land.txt" are also provided
+  - For DISFA dataset, we need to select the annotations of 49 landmarks from original 66 landmarks:
+  ```
+  cd dataset
+  python read_disfa_49land.py
+  ```
 - Conduct similarity transformation for face images:
-  - Put the landmark annotation files into the folder "dataset". An example file "BP4D_combine_1_2_land.txt" for two images is also provided
   ```
   cd dataset
   python face_transform.py
   ```
-- Compute the inter-ocular distance of each face image
+- Compute the inter-ocular distance of each face image:
   ```
   cd dataset
   python write_biocular.py
