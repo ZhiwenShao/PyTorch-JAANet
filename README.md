@@ -63,7 +63,7 @@ python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --pred_AU=False --vis_attenti
 - The PyTorch implementation for the ECCV version conducts two minor revisions to make the proposed method more general:
   - The redundant cropping of attention maps is removed
   - The assembling of local feature maps uses element-wise average instead of element-wise sum
-- The differences in the extended version are detailed [here](https://arxiv.org/pdf/2003.08834.pdf)
+- The differences in the extended journal version are detailed [here](https://arxiv.org/pdf/2003.08834.pdf)
 
 ## Citation
 - If you use this code for your research, please cite our papers
