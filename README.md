@@ -1,5 +1,5 @@
 # PyTorch-JAANet
-This repository is the PyTorch implementation of [JAA-Net](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhiwen_Shao_Deep_Adaptive_Attention_ECCV_2018_paper.pdf), as well as [its extended version](https://arxiv.org/pdf/2003.08834.pdf). "*v1.py" is for the ECCV version, and "*v2.py" is for the extened versin. The original Caffe implementation can be found [here](https://github.com/ZhiwenShao/JAANet)
+This repository is the PyTorch implementation of [JAA-Net](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhiwen_Shao_Deep_Adaptive_Attention_ECCV_2018_paper.pdf), as well as [its extended journal version](https://arxiv.org/pdf/2003.08834.pdf). "*v1.py" is for the ECCV version, and "*v2.py" is for the IJCV version. The original Caffe implementation can be found [here](https://github.com/ZhiwenShao/JAANet)
 
 # Getting Started
 ## Installation
@@ -79,7 +79,8 @@ python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --pred_AU=False --vis_attenti
 @article{shao2020jaa,
   title={JAA-Net: Joint Facial Action Unit Detection and Face Alignment via Adaptive Attention},
   author={Shao, Zhiwen and Liu, Zhilei and Cai, Jianfei and Ma, Lizhuang},
-  journal={arXiv preprint arXiv:2003.08834},
-  year={2020}
+  journal={International Journal of Computer Vision},
+  year={2020},
+  publisher={Springer}
 }
 ```
