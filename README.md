@@ -77,7 +77,7 @@ python test_JAAv1.py --run_name='JAAv1' --gpu_id=0 --pred_AU=False --vis_attenti
   organization={Springer}
 }
 @article{shao2020jaa,
-  title={J$\hat{\text{A}}$A-Net: Joint Facial Action Unit Detection and Face Alignment via Adaptive Attention},
+  title={J{\^A}A-Net: Joint Facial Action Unit Detection and Face Alignment via Adaptive Attention},
   author={Shao, Zhiwen and Liu, Zhilei and Cai, Jianfei and Ma, Lizhuang},
   journal={International Journal of Computer Vision},
   year={2020},
